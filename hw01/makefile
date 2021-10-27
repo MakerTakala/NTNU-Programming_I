@@ -4,9 +4,6 @@ all:
 	@gcc hw0103.c -o hw0103
 	@gcc hw0104.c -o hw0104
 
-open:
-	@code .
-
 new:
 	@cp ../template.c hw0100.c
 	@code hw0100.c
