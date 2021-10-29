@@ -1,5 +1,5 @@
 # Homework01  41047025 王重鈞
-
+---
 
 ## 2.1 Discriminant
 ---
