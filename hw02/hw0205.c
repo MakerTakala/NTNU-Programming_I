@@ -36,7 +36,7 @@ void inputCard(bool card[], int8_t suit[]){
                 break;
             }
             default :{
-                printf("%hhdrd", i + 1);
+                printf("%hhdth", i + 1);
                 break;
             }
         }
