@@ -27,6 +27,7 @@ int main(){
     else{
         discountPrice = originalPrice;
     }
+    printf("Proofreading fee --> %ld\n", discountPrice);
     return 0;
 }
 
