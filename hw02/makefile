@@ -13,8 +13,5 @@ new:
 zip:
 	zip hw02 ./*.c ./*.pdf makefile
 
-backup:
-	cp 
-
 clean:
 	@rm hw020?

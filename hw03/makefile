@@ -9,10 +9,7 @@ new:
 	@code hw0300.c
 
 zip:
-	zip hw03 ./*.c ./*.pdf
-
-backup:
-	cp 
+	zip hw03 ./*.c ./*.pdf makefile
 
 clean:
 	@rm hw030?
