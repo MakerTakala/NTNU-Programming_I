@@ -11,7 +11,7 @@ new:
 	@code hw0200.c
 
 zip:
-	zip hw02 ./*.c ./*.pdf
+	zip hw02 ./*.c ./*.pdf makefile
 
 backup:
 	cp 

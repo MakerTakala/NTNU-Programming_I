@@ -163,7 +163,11 @@ int64_t workTimeCounter(time start,time end, int64_t workDay){
             workHour += 8;
         }
     }
-
+    
+    if(workMinute >= 60){
+        workHour += (workMinute / 60);
+        workMinute %= 60;
+    }
     while(workMinute < 0){
         workHour--;
         workMinute += 60;
