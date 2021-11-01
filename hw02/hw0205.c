@@ -1,26 +1,25 @@
 #include <stdio.h>
 #include <stdint.h>
-#include <stdbool.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-void inputCard(bool [], int8_t []);
+int8_t inputCard(int8_t []);
 int8_t HCPCounter(bool []);
-void HAPandSuitOutput(int8_t, int8_t []);
+void HCPandSuitOutput(int8_t, int8_t []);
 void bibbingChoice(int8_t, int8_t []);
 
 int main(){
-    bool card[53] = {false};
     int8_t suit[4] = {0};
-    inputCard(card, suit);
-    int8_t HCP = HCPCounter(card);
-    HAPandSuitOutput(HCP, suit);
+    int8_t HCP = inputCard(suit);
+    HCPandSuitOutput(HCP, suit);
     bibbingChoice(HCP, suit);
     
     return 0;
 }
 
-void inputCard(bool card[], int8_t suit[]){
+int8_t inputCard(int8_t suit[]){
     int32_t inputCard = 0;
+    int8_t HCP = 0;
     for(int8_t i = 0; i < 13; i++){
         switch(i){
             case 0 :{
@@ -47,40 +46,31 @@ void inputCard(bool card[], int8_t suit[]){
             printf("----------------------------------------------------------\n\n");
             exit(0);
         }
-        card[inputCard] = true;
         suit[(inputCard - 1) / 13]++;
-    }
-}
-
-int8_t HCPCounter(bool card[]){
-    int8_t HCP = 0;
-    for(int8_t i = 1; i <= 52; i++){
-        int8_t point = (i - 1) % 13 + 1;
-        if(card[i] == true){
-            switch(point){
-                case 1 :{
-                    HCP += 4;
-                    break;
-                }
-                case 11 :{
-                    HCP += 1;
-                    break;
-                }
-                case 12 :{
-                    HCP += 2;
-                    break;
-                }
-                case 13 :{
-                    HCP += 3;
-                    break;
-                }
+        int8_t point = (inputCard - 1) % 13 + 1;
+        switch(point){
+            case 1 :{
+                HCP += 4;
+                break;
+            }
+            case 11 :{
+                HCP += 1;
+                break;
+            }
+            case 12 :{
+                HCP += 2;
+                break;
+            }
+            case 13 :{
+                HCP += 3;
+                break;
             }
         }
     }
     return HCP;
 }
 
-void HAPandSuitOutput(int8_t HCP, int8_t suit[]){
+void HCPandSuitOutput(int8_t HCP, int8_t suit[]){
     printf("---\n");
     printf("HCP: %hhd pts\n", HCP);
     printf("Suit: %hhd", suit[0]);
@@ -92,34 +82,27 @@ void HAPandSuitOutput(int8_t HCP, int8_t suit[]){
 
 void bibbingChoice(int8_t HCP, int8_t suit[]){
     const char suitName[5][8] = {"S", "H", "D", "C", "NT"};
-    int8_t bibPoint = 0, bibSuit = 0, mostHolding = 0;
+    int8_t bibPoint = 0, bibSuit = 0, mostHoldingcard = 0, mostHoldingsuit = 0;;
 
     for(int8_t i = 0; i < 4; i++){
-        mostHolding = suit[i] > mostHolding ? suit[i] : mostHolding;
+        if(suit[i] > mostHoldingcard){
+            mostHoldingcard = suit[i];
+            mostHoldingsuit = i;
+        }
     }
 
     if(10 <= HCP && HCP <= 12){
-        if(suit[0] >=6 || suit[1] >= 6 || suit[2] >= 6){
-            for(int8_t i = 0; i < 3; i++){
-                if(suit[i] == mostHolding){
-                    bibPoint = 2;
-                    bibSuit = i;
-                    break;
-                }
-            }
+        if(mostHoldingsuit != 3 && mostHoldingcard >= 6){
+            bibPoint = 2;
+            bibSuit = mostHoldingsuit;
         }
-        if(suit[0] >= 7 || suit[1] >= 7 || suit[2] >= 7 || suit[3] >= 7){
-            for(int8_t i = 0; i < 4; i++){
-                if(suit[i] == mostHolding){
-                    bibPoint = 3;
-                    bibSuit = i;
-                    break;
-                }
-            }
+        if(mostHoldingcard >= 7){
+            bibPoint = 3;
+            bibSuit = mostHoldingsuit;
         }
     }
     if(13 <= HCP && HCP <= 21){
-        if( (suit[2] >= 3 || suit[3] >= 3) && (suit[2] == mostHolding || suit[3] == mostHolding) ){
+        if( (mostHoldingcard == suit[2] || mostHoldingcard == suit[3]) && mostHoldingcard >= 3 ){
             bibPoint = 1;
             bibSuit = (suit[2] >= suit[3] ? 2 : 3);
         }
@@ -133,9 +116,9 @@ void bibbingChoice(int8_t HCP, int8_t suit[]){
         bibSuit = 4;
     }
     if(13 <= HCP && HCP <= 21){
-        if( (suit[0] >= 5 || suit[1] >= 5) && (suit[0] == mostHolding || suit[1] == mostHolding)){
+        if( (mostHoldingsuit == 0 || mostHoldingsuit == 1) && mostHoldingcard >= 5){
             bibPoint = 1;
-            bibSuit = (suit[0] >= suit[1] ? 0 : 1);
+            bibSuit = mostHoldingsuit;
         }
     }
     if(22 <= HCP){
@@ -151,12 +134,3 @@ void bibbingChoice(int8_t HCP, int8_t suit[]){
     }
 
 }
-
-/* 10  11  12  13  14  15  16  17  18  19  20  21  22
-                                                   2C -------
-                -----------1S1H1D1C------------- 
-                            --1NT---
-                                            -2NT
-    3S3H3D3C
-    -2S2H2D-
-*/
