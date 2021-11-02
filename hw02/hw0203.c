@@ -11,12 +11,12 @@ typedef struct{
 }time;
 
 void errorMessage();
-void errorInputDetect();
-void errorTimeDetect();
-int64_t allDayCounter();
-int8_t weekCounter();
-int64_t workDayCounter();
-int64_t workTimeCounter();
+void errorInputDetect(time);
+void errorTimeDetect(time, time);
+int64_t allDayCounter(time, time);
+int8_t weekCounter(time);
+int64_t workDayCounter(time, time, int64_t);
+int64_t workTimeCounter(time, time, int64_t);
 
 
 int main(){
