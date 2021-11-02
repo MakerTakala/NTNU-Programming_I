@@ -14,20 +14,18 @@ int main(){
     int32_t serviceLevel = askServiceLevel();
     int32_t deliveryTime = askDeliveryTime();
     double originalPrice = wordCount * proofreadingFee[serviceLevel - 1][deliveryTime - 1];
-    int64_t discountPrice = 0;
+    originalPrice += 0.000001;
     if(serviceLevel == 1 && wordCount >= 2000){
-        discountPrice = originalPrice * 0.75;
+        originalPrice *= 0.75;
     }
     else if(serviceLevel == 2 && wordCount >= 6000){
-        discountPrice = originalPrice * 0.9;
+        originalPrice *= 0.9;
     }
     else if(serviceLevel == 3 && wordCount >= 6000){
-        discountPrice = originalPrice * 0.95;
+        originalPrice *= 0.95;
     }
-    else{
-        discountPrice = originalPrice;
-    }
-    printf("Proofreading fee --> %ld\n", discountPrice);
+    
+    printf("Proofreading fee --> %ld\n", (int64_t)originalPrice);
     return 0;
 }
 
