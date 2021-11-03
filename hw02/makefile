@@ -6,6 +6,8 @@ all:
 	@gcc hw0205.c -o hw0205
 	@gcc hw0206.c -o hw0206
 
+.PHONY : new zip clean
+
 new:
 	@cp ../template.c hw0200.c
 	@code hw0200.c
@@ -14,4 +16,4 @@ zip:
 	zip hw02 ./*.c ./*.pdf makefile
 
 clean:
-	@rm hw020?
+	@-rm hw020?
