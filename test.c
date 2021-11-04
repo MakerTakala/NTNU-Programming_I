@@ -1,8 +1,5 @@
 #include <stdio.h>
-
+#include <math.h>
 int main(){
-    double a = 23.1414;
-    int b = 2935;
-    double out = a / b;
-    printf("%lf", out);
+    printf("%lf", log10(0)) + 1;
 }

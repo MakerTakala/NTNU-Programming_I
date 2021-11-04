@@ -1,5 +1,5 @@
 all:
-	gcc test.c -o test.exe
+	gcc test.c -o test.exe -lm
 
 newhw:
 	@mkdir newhw

@@ -50,6 +50,6 @@ int main(){
     printf("Please enter the prediction year: ");
     scanf("%ld", &predictYear);
     double predictTemperature = predictYear * slope + intercept;
-    printf("Temperature: %Lf\n", predictTemperature);
+    printf("Temperature: %lf\n", predictTemperature);
     return 0;
 }
