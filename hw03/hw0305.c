@@ -30,7 +30,7 @@ int main(){
         sampleQuantity++;
     }
 
-    if(sampleQuantity == 0){
+    if(sampleQuantity <= 1){
         printf("\nNot enough Input!!!\n");
         printf("----------------------------------------------------------\n\n");
         exit(0);
