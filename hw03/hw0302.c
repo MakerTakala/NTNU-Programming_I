@@ -16,6 +16,11 @@ int main(){
     scanf("%ld", &number2);
     wrongInputDetect(number2);
     int64_t sum = number1 + number2;
+    if(sum > INT32_MAX){
+        printf("\nOverflow!!!\n");
+        printf("----------------------------------------------------------\n\n");
+        exit(0);
+    }
     int8_t sumdigit = (sum == 0 ? 1 : log10((double)sum) + 1);
 
     printf("   ");
