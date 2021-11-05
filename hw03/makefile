@@ -4,6 +4,7 @@ all:
 	@gcc hw0303.c -o hw0303
 	@gcc hw0304.c -o hw0304
 	@gcc hw0305.c -o hw0305
+	@gcc hw0304_2.c -o hw0304_2
 
 .PHONY : new zip clean
 

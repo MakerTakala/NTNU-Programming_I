@@ -5,9 +5,9 @@
 
 int main(){
     int64_t year[1000] = {0};
-    double temperature[1000] = {0};
+    long double temperature[1000] = {0};
     int64_t sampleQuantity = 0, sumYear = 0;
-    double sumTempreature = 0;
+    long double sumTempreature = 0;
 
     //input necessary information
     while(true){
@@ -16,13 +16,13 @@ int main(){
         if(year[sampleQuantity] == -1){
             break;
         }
-        if(year[sampleQuantity] <= 0){
+        if(year[sampleQuantity] < 1900){
             printf("\nWrong Input!!!\n");
             printf("----------------------------------------------------------\n\n");
             exit(0);
         }
         printf("Temperature: ");
-        scanf("%lf", &temperature[sampleQuantity]);
+        scanf("%Lf", &temperature[sampleQuantity]);
 
         sumYear += year[sampleQuantity];
         sumTempreature += temperature[sampleQuantity];
@@ -37,8 +37,8 @@ int main(){
     }
 
     //calculate regression line
-    double Sxy = 0, Sxx = 0;
-    double averageYear = sumYear / sampleQuantity, averageTemperature = sumTempreature / sampleQuantity;
+    long double Sxy = 0, Sxx = 0;
+    long double averageYear = sumYear / sampleQuantity, averageTemperature = sumTempreature / sampleQuantity;
     for(int i = 0; i < sampleQuantity; i++){
         double Xi = year[i] - averageYear , Yi = temperature[i] - averageTemperature;
         Sxy += Xi * Yi;
@@ -49,8 +49,7 @@ int main(){
     int64_t predictYear = 0;
     printf("Please enter the prediction year: ");
     scanf("%ld", &predictYear);
-    double predictTemperature = predictYear * slope + intercept;
-    printf("[debug]intercept %Lf\n", intercept);
-    printf("Temperature: %lf\n", predictTemperature);
+    long double predictTemperature = predictYear * slope + intercept;
+    printf("Temperature: %Lf\n", predictTemperature);
     return 0;
 }
