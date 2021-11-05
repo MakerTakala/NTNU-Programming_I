@@ -1,13 +1,18 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <math.h>
+#include <stdlib.h>
+
+void wrongInputDetect(int64_t);
 
 int main(){
     int64_t w = 0, h = 0;
     printf("Please enter the width : ");
     scanf("%ld", &w);
+    wrongInputDetect(w);
     printf("Please enter the height: ");
     scanf("%ld", &h);
+    wrongInputDetect(h);
     int64_t ans[h][w];
     int64_t tmph = h, tmpw = w;
 
@@ -42,4 +47,12 @@ int main(){
 
 
     return 0;
+}
+
+void wrongInputDetect(int64_t num){
+    if(num <= 0){
+        printf("\nWrong Input!!!\n");
+        printf("----------------------------------------------------------\n\n");
+        exit(0);
+    }
 }

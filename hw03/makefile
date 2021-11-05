@@ -16,4 +16,4 @@ zip:
 	zip hw03 ./*.c ./*.pdf makefile
 
 clean:
-	@-rm hw030?
+	@-rm hw030? hw0304_2
