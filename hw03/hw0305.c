@@ -44,7 +44,7 @@ int main(){
         Sxy += Xi * Yi;
         Sxx += Xi * Xi;
     }
-    long double slope = Sxy / Sxx, intercept = temperature[0] - slope * year[0] + 0.000001;
+    long double slope = Sxy / Sxx, intercept = temperature[0] - (slope * year[0] + 0.000001);
 
     int64_t predictYear = 0;
     printf("Please enter the prediction year: ");
