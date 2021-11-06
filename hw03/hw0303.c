@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 int64_t inputNumber = 0;
 
@@ -114,7 +115,5 @@ void s6(){
 }
 void final(){
     printf("Final\n");
-    intoNewBlock();
-    final();
-    return;
+    exit(0);
 }

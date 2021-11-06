@@ -2,49 +2,26 @@
 #include <stdint.h>
 #include <math.h>
 #include <stdlib.h>
+#define min(a, b) (a > b ? b : a)
 
 void wrongInputDetect(int64_t);
+int64_t numcalculate(int64_t, int64_t);
+int64_t w = 0, h = 0;
 
 int main(){
-    int64_t w = 0, h = 0;
     printf("Please enter the width : ");
     scanf("%ld", &w);
     wrongInputDetect(w);
     printf("Please enter the height: ");
     scanf("%ld", &h);
     wrongInputDetect(h);
-    int64_t ans[h][w];
-    int64_t tmph = h, tmpw = w;
-
-    int64_t n = 1, y = -1, x = 0;
-    int8_t digit = log10(h * w) + 1;
-    w -= 1;
-    while(h >= 0 && w >= 0){
-        for(int i = 0; w >= 0 && i < h; i++){
-            ans[++y][x] = n++;
-        }
-        h--;
-        for(int i = 0; h >= 0 && i < w; i++){
-            ans[y][++x] = n++;
-        }
-        w--;
-        for(int i = 0; w >= 0 && i < h; i++){
-            ans[--y][x] = n++;
-        }
-        h--;
-        for(int i = 0; h >= 0 && i < w; i++){
-            ans[y][--x] = n++;
-        }
-        w--;
-    }
     
-    for(int i = 0; i < tmph; i++){
-        for(int j = 0; j < tmpw; j++){
-            printf("%*ld ", digit, ans[i][j]);
+    for(int i = 0; i < h; i++){
+        for(int j = 0; j < w; j++){
+            printf("%*ld ", (int)log10(w * h) + 1, numcalculate(i, j));
         }
         printf("\n");
     }
-
 
     return 0;
 }
@@ -55,4 +32,18 @@ void wrongInputDetect(int64_t num){
         printf("----------------------------------------------------------\n\n");
         exit(0);
     }
+}
+
+int64_t numcalculate(int64_t y, int64_t x){
+    int64_t level = min( min(y, x), min(h - y - 1, w - x - 1) );
+    int64_t m = h - level * 2, n = w - level * 2;
+    int64_t loopFirstNum = (h * w) - m * n + 1;
+
+    if(x == level || y == h - level - 1){
+        return loopFirstNum + (y - level) + (x - level);
+    }
+    else{
+        return (loopFirstNum + (m - 1) + (n - 1) ) + (h - y - level - 1) + (w - x - level - 1);
+    }
+    
 }
