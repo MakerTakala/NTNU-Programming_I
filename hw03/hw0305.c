@@ -9,7 +9,6 @@ int main(){
     int64_t sampleQuantity = 0, sumYear = 0;
     long double sumTempreature = 0;
 
-    //input necessary information
     while(true){
         printf("Please enter the year: ");
         scanf("%ld", &year[sampleQuantity]);
@@ -23,6 +22,11 @@ int main(){
         }
         printf("Temperature: ");
         scanf("%Lf", &temperature[sampleQuantity]);
+        if(temperature[sampleQuantity] < -273.15){
+            printf("\nWrong Input!!!\n");
+            printf("----------------------------------------------------------\n\n");
+            exit(0);
+        }
 
         sumYear += year[sampleQuantity];
         sumTempreature += temperature[sampleQuantity];
@@ -30,8 +34,8 @@ int main(){
         sampleQuantity++;
     }
 
-    if(sampleQuantity <= 1){
-        printf("\nNot enough Input!!!\n");
+    if(sampleQuantity < 2){
+        printf("\nThe amount of data is not enough to predict.\n");
         printf("----------------------------------------------------------\n\n");
         exit(0);
     }
@@ -50,6 +54,6 @@ int main(){
     printf("Please enter the prediction year: ");
     scanf("%ld", &predictYear);
     long double predictTemperature = predictYear * slope + intercept + 0.000001;
-    printf("Temperature: %Lf\n", predictTemperature);
+    printf("Temperature: %.4Lf\n", predictTemperature);
     return 0;
 }
