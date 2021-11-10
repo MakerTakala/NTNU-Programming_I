@@ -19,4 +19,4 @@ zip:
 	zip mid ./*.c ./*.pdf makefile
 
 clean:
-	-rm mid?? *.o
+	-rm mid??
