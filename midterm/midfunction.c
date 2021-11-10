@@ -9,7 +9,7 @@ void errorMessageExit(char message[]){
     exit(0);
 }
 
-void ask(char message[], int64_t* input){
+void askInput(char message[], int64_t* input){
     printf("%s", message);
     scanf("%ld", input);
 }
