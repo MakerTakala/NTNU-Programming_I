@@ -3,6 +3,6 @@
 #include "midfunction.h"
 
 int main(){
-    errorMessageExit("Wrong Input");
+    
     return 0;
 }
