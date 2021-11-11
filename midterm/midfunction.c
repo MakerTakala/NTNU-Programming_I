@@ -1,7 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "midfunction.h"
 
 void errorMessageExit(char message[]){
     printf("\n%s\n", message);
