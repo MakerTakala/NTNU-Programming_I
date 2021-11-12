@@ -17,7 +17,7 @@ midfunction.o:
 .PHONY: zip clean
 
 zip:
-	zip mid ./*.c ./*.pdf makefile
+	zip mid *.c *.pdf makefile
 
 clean:
 	-rm mid??
