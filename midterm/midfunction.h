@@ -16,7 +16,7 @@ typedef struct{
     point p2;
 }line;
 
-long double get_slope(line l);
-point get_intersection(line l1, line l2);
+long double getSlope(line);
+point getIntersection(line, line);
 
 #endif

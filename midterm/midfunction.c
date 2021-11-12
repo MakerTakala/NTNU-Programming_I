@@ -14,11 +14,11 @@ void askInput(char message[], int64_t* input){
     scanf("%ld", input);
 }
 
-long double get_slope(line l){ 
+long double getSlope(line l){ 
     return (l.p1.y - l.p2.y) / (l.p1.x - l.p2.x);
 }
 
-point get_intersection(line l1, line l2){
+point getIntersection(line l1, line l2){
     point p;
 
     p.x = ((l1.p1.x * l1.p2.y - l1.p1.y * l1.p2.x) * (l2.p1.x - l2.p2.x) - (l1.p1.x - l1.p2.x) * (l2.p1.x * l2.p2.y - l2.p1.y * l2.p2.x)) / ((l1.p1.x - l1.p2.x) * (l2.p1.y - l2.p2.y) - (l1.p1.y - l1.p2.y) * (l2.p1.x - l2.p2.x));
