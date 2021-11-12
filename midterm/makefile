@@ -11,7 +11,7 @@ midterm: $(ObjectO) midfunction.o
 
 $(ObjectO): midfunction.h
 
-midfunction.o:
+midfunction.o: midfunction.h
 
 
 .PHONY: zip clean
