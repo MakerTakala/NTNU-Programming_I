@@ -3,9 +3,12 @@
 
 #include <stdint.h>
 
+void errorMessageExit(char []);
+void askInput(char [], int64_t* );
+
 typedef struct{
-    double x;
-    double y;
+    long double x;
+    long double y;
 }point;
 
 typedef struct{
@@ -13,9 +16,7 @@ typedef struct{
     point p2;
 }line;
 
-void errorMessageExit(char []);
-void askInput(char [], int64_t* );
-double get_slope(line l);
+long double get_slope(line l);
 point get_intersection(line l1, line l2);
 
 #endif
