@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include "midfunction.h"
 
 void wrongInputDetect(int64_t);
@@ -10,9 +11,13 @@ int main(){
     wrongInputDetect(n1);
     askInput("Please enter the 2nd integer: ", &n2);
     wrongInputDetect(n2);
-    if(n1 ==0 && n2 == 0){
+    if(n1 == 0 && n2 == 0){
         printf("00\n");
         return 0;
+    }
+    bool isZero = false;
+    if(n1 == 0 || n2 == 0){
+        isZero = true;
     }
     int64_t ans = 0;
     while( !n1 == 0 || !n2 == 0){
@@ -25,8 +30,7 @@ int main(){
             n2 /= 10;
         }
     }
-
-    printf("%ld\n", ans);
+    printf("%ld\n", (isZero ? ans * 10 : ans));
     return 0;
 }
 
