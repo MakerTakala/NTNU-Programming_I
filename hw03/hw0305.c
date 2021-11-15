@@ -7,7 +7,7 @@ int main(){
     int64_t year[1000] = {0};
     long double temperature[1000] = {0};
     int64_t sampleQuantity = 0, sumYear = 0;
-    long double sumTempreature = 0;
+    long double sumTemperature = 0;
 
     while(true){
         printf("Please enter the year: ");
@@ -29,7 +29,7 @@ int main(){
         }
 
         sumYear += year[sampleQuantity];
-        sumTempreature += temperature[sampleQuantity];
+        sumTemperature += temperature[sampleQuantity];
 
         sampleQuantity++;
     }
@@ -42,7 +42,7 @@ int main(){
 
     //calculate regression line
     long double Sxy = 0, Sxx = 0;
-    long double averageYear = sumYear / sampleQuantity, averageTemperature = sumTempreature / sampleQuantity;
+    long double averageYear = sumYear / sampleQuantity, averageTemperature = sumTemperature / sampleQuantity;
     for(int i = 0; i < sampleQuantity; i++){
         double Xi = year[i] - averageYear , Yi = temperature[i] - averageTemperature;
         Sxy += Xi * Yi;
