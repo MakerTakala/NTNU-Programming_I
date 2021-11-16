@@ -1,0 +1,31 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Unignore README and Makefile
+!README
+!makefile
+
+# ignore EXE
+*.exe
+
+**/*.pdf
+
+!midterm/*.pdf
+
+!midterm/makefile
+
+!midterm/*.zip
+
+!final/*.pdf
+
+!final/makefile
+
+!final/*.zip
+
+**/makefile
