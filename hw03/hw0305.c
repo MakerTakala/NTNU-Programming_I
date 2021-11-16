@@ -4,8 +4,8 @@
 #include <stdbool.h>
 
 int main(){
-    int64_t year[1000] = {0};
-    long double temperature[1000] = {0};
+    int64_t year[100000] = {0};
+    long double temperature[100000] = {0};
     int64_t sampleQuantity = 0, sumYear = 0;
     long double sumTemperature = 0;
 

@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "midfunction.h"
 
 typedef struct{
     int64_t movement;
-    int64_t ymove;
-    int64_t xmove;
     int64_t x;
     int64_t y;
 }Player;
@@ -22,6 +21,7 @@ char map[21][81];
 void mapSetup();
 void playerAndEnemySetup(char[], int64_t*, int64_t, int64_t);
 void enemyLocationsetup(enemy);
+void playerMovement(Player*);
 void printMap();
 
 int main(){
@@ -46,49 +46,13 @@ int main(){
     playerAndEnemySetup("Enemy 2 location (2-20): ", &(enemy2.y), 2, 20);
     enemy2.x = 1;
 
+    //GameStart 
     while(true){
-        playerAndEnemySetup("Move: (1) Up (2) Down? ", &(), 1, 2);
+        //PlayerMove
+        playerMovement(&player);
+
     }
     printMap();
-    
-
-    int64_t dir1 = 0, dir2 = 0, range1 = 0, range2 = 0;
-    while(1){
-        askInput("Move: (1) Up (2) Down? ", &dir1);
-        if(dir1 == 1 || dir1 == 2){
-            break;
-        }
-        else{
-            printf("Invalid input!!\n");
-        }
-    }
-    while(1){
-        askInput("MRange (0-3)? ", &range1);
-        if(range1 > 0 && range1 < 3){
-            break;
-        }
-        else{
-            printf("Invalid input!!\n");
-        }
-    }
-    while(1){
-        askInput("Move: (1) Up (2) Down? ", &dir2);
-        if(dir2 == 1 || dir2 == 2){
-            break;
-        }
-        else{
-            printf("Invalid input!!\n");
-        }
-    }
-    while(1){
-        askInput("Range (0-3)? ", &range2);
-        if(range2 > 0 && range2 < 3){
-            break;
-        }
-        else{
-            printf("Invalid input!!\n");
-        }
-    }
     /*
 
 
@@ -128,13 +92,63 @@ void mapSetup(){
 
 void playerAndEnemySetup(char ask[], int64_t* input, int64_t down, int64_t up){
     bool pass = false;
-    do{
+    while(!pass){
         askInput(ask, input);
         pass = (down <= *input && *input <= up);
         if(!pass){
-            printf("Invalid input!!\n");
+            printf("\033[31m \nInvalid input!!\n\033[m\n");
         }
-    }while(!pass);
+    }
+}
+
+void playerMovement(Player* p){
+    int64_t vertical = 0, horizon = 0;
+    int64_t ymove = 0, xmove = 0;
+    int64_t movement = p -> movement;
+    char askword[100];
+    bool pass = false;
+    while(!pass){
+        pass = true;
+        playerAndEnemySetup("Move: (1) Up (2) Down?", &vertical, 1, 2);
+        sprintf(askword, "Range (0-%ld)?", movement);
+        playerAndEnemySetup(askword, &ymove, 0, movement);
+        if(ymove > movement){
+            printf("\033[31m \nYour can only move %ld steps.\n\033[m\n", movement);
+            pass = false;
+            continue;
+        }
+        
+        playerAndEnemySetup("Move: (1) Left (2) Right?", &horizon, 1, 2);
+        sprintf(askword, "Range (0-%ld)?", movement - ymove);
+        playerAndEnemySetup(askword, &xmove, 0, movement - ymove);
+        if(ymove > movement){
+            printf("\033[31m \nYour can only move %ld steps.\n\033[m\n", movement - ymove);
+            pass = false;
+            continue;
+        }
+
+        ymove *= (vertical == 1 ? 1 : -1);
+        xmove *= (horizon == 1 ? 1 : -1);
+
+        if(abs(xmove) + abs(ymove) > p -> movement){
+            printf("\033[31m \nYour can only move %ld steps.\n\033[m\n", movement);
+            pass = false;
+            continue;
+        }
+        if( p -> y + ymove  < 1 || 18 < p -> x + ymove ){
+            printf("\033[31m \nYour move will hit the boundary.\n\033[m\n");
+            pass = false;
+            continue;
+        }
+        if( p -> x + xmove  < 1 || 78 < p -> x + xmove ){
+            printf("\033[31m \nYour move will hit the boundary.\n\033[m\n");
+            pass = false;
+            continue;
+        }
+    }
+    p -> y += ymove;
+    p -> x += xmove;
+
 }
 
 void printMap(){
