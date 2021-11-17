@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "askinput_exit.h"
-#include "hw0401kprint.h"
+#include "kprint.h"
 
 int main(){
     int64_t n = 0;
