@@ -12,13 +12,14 @@ int main(){
         exit(0);
     }
 
-    long double ans = 2 * n;
+    long double ans = (2 * n);
     for(int i = 2 * (n - 1); i >= 2; i -= 2){
+        ans = 1 + 1 / ans;
+        ans = 1 + 1 / ans;
         ans = i + 1 / ans;
-        ans = 1 + 1 / ans;
-        ans = 1 + 1 / ans;
     }
-    ans += 1;
+    ans = 1 + 1 / ans;
+    ans = 2 + 1 / ans;
     printf("Answer: %.50Lf\n", ans);
     return 0;
 }
