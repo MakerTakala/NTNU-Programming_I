@@ -31,6 +31,20 @@ void kprint(int64_t n){
     }
 }
 
+void hanoi_recur(int64_t n, int8_t now, int8_t next, int8_t temp, int64_t disk){
+    if(n == 1){
+        printf("move disk %ld form %hhd to rod %hhd\n", disk, now, next);
+        return;
+    }
+    hanoi_recur(n - 1, now, temp, next, disk - 1);
+    hanoi_recur(1, now, next, temp, disk);
+    hanoi_recur(n - 1, temp, next, now, disk - 1);
+}
+
+void hanoi_loop(int64_t n){
+    
+}
+
 long double countResistance(int64_t r, int64_t n){
     long double ans = 2 * r;
     for(int i = 1; i < n; i++){
