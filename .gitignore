@@ -1,8 +1,5 @@
-# Ignore all
 *
-
 !*.*
-
 !*.md
 !makefile
 !*.zip
