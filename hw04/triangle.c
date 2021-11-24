@@ -52,9 +52,6 @@ int set_point_check( double x, double y, int8_t p){
             return (x != point1.x || y == point1.y);
         }
         if(p == 3){
-            if( (x == point1.x && y == point1.y) || (x == point2.x && y == point2.y) ){
-                return 0;
-            }
             return fabs( (y - point1.y) * (point2.x - point1.x) - (point2.y - point1.y) * (x - point1.x) ) > eps;
         }
     }
@@ -64,9 +61,6 @@ int set_point_check( double x, double y, int8_t p){
             return (x != point3.x || y == point3.y);
         }
         if(p == 2){
-            if( (x == point1.x && y == point1.y) || (x == point3.x && y == point3.y) ){
-                return 0;
-            }
             return fabs( (y - point1.y) * (point3.x - point1.x) - (point3.y - point1.y) * (x - point1.x) ) > eps;
         }
         if(p == 3){
@@ -76,9 +70,6 @@ int set_point_check( double x, double y, int8_t p){
     //setpoint == 2 && point2 & point3 has been set
     if(successInput == 6){
         if(p == 1){
-            if( (x == point2.x && y == point2.y) || (x == point3.x && y == point3.y) ){
-                return 0;
-            }
             return fabs( (y - point2.y) * (point3.x - point1.x) - (point3.y - point2.y) * (x - point2.x) ) > eps;
         }
         if(p == 2){
@@ -90,21 +81,12 @@ int set_point_check( double x, double y, int8_t p){
     }
     if(successInput == 7){
         if(p == 1){
-            if( (x == point2.x && y == point2.y) || (x == point3.x && y == point3.y) ){
-                return 0;
-            }
             return fabs( (y - point2.y) * (point3.x - point1.x) - (point3.y - point2.y) * (x - point2.x) ) > eps;
         }
         if(p == 2){
-            if( (x == point1.x && y == point1.y) || (x == point3.x && y == point3.y) ){
-                return 0;
-            }
             return fabs( (y - point1.y) * (point3.x - point1.x) - (point3.y - point1.y) * (x - point1.x) ) > eps;
         }
         if(p == 3){
-            if( (x == point1.x && y == point1.y) || (x == point2.x && y == point2.y) ){
-                return 0;
-            }
             return fabs( (y - point1.y) * (point2.x - point1.x) - (point2.y - point1.y) * (x - point1.x) ) > eps;
         }
     }
