@@ -31,7 +31,7 @@ And strangers would comment ,\n\
 He died at the console ,\n\
 Of hunger and thirst.\n\
 Next day he was buried ,\n\
-Face down , nine -edge first.\n\
+Face down , nine-edge first.\n\
 \n\
 And the last bug in sight ,\n\
 An ant passing by,\n\
