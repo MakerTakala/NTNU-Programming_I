@@ -1,35 +1,151 @@
 #include <math.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include "triangle.h"
-#define eps 1e-8
+#define eps 1e-6
 
 static point point1, point2, point3;
 
 static int8_t successInput = 0;
 
+//when user input a new point, if input invalid, return 0
+//x y means the input number, p means the input point
+int set_point_check( double x, double y, int8_t p){
+    //setpoint == 0
+    if(successInput == 0){
+        return 1;
+    }
+    //setpoint == 1 && point1 has been set
+    if(successInput == 1){
+        if(p == 1){
+            return 1;
+        }
+        else{
+            return (x != point1.x || y != point1.y);
+        }
+    }
+    //setpoint == 1 && point2 has been set
+    if(successInput == 2){
+        if(p == 2){
+            return 1;
+        }
+        else{
+            return (x != point2.x || y != point2.y);
+        }
+    }
+    //setpoint == 1 && point3 has been set
+    if(successInput == 4){
+        if(p == 3){
+            return 1;
+        }
+        else{
+            return (x != point3.x || y != point3.y);
+        }
+    }
+
+    //setpoint == 2 && point1 & point2 has been set
+    if(successInput == 3){
+        if(p == 1){
+            return (x != point2.x || y == point2.y);
+        }
+        if(p == 2){
+            return (x != point1.x || y == point1.y);
+        }
+        if(p == 3){
+            if( (x == point1.x && y == point1.y) || (x == point2.x && y == point2.y) ){
+                return 0;
+            }
+            return fabs( (y - point1.y) * (point2.x - point1.x) - (point2.y - point1.y) * (x - point1.x) ) > eps;
+        }
+    }
+    //setpoint == 2 && point1 & point3 has been set
+    if(successInput == 5){
+        if(p == 1){
+            return (x != point3.x || y == point3.y);
+        }
+        if(p == 2){
+            if( (x == point1.x && y == point1.y) || (x == point3.x && y == point3.y) ){
+                return 0;
+            }
+            return fabs( (y - point1.y) * (point3.x - point1.x) - (point3.y - point1.y) * (x - point1.x) ) > eps;
+        }
+        if(p == 3){
+            return (x != point1.x || y == point1.y);
+        }
+    }
+    //setpoint == 2 && point2 & point3 has been set
+    if(successInput == 6){
+        if(p == 1){
+            if( (x == point2.x && y == point2.y) || (x == point3.x && y == point3.y) ){
+                return 0;
+            }
+            return fabs( (y - point2.y) * (point3.x - point1.x) - (point3.y - point2.y) * (x - point2.x) ) > eps;
+        }
+        if(p == 2){
+            return (x != point3.x || y == point3.y);
+        }
+        if(p == 3){
+            return (x != point2.x || y == point2.y);
+        }
+    }
+    if(successInput == 7){
+        if(p == 1){
+            if( (x == point2.x && y == point2.y) || (x == point3.x && y == point3.y) ){
+                return 0;
+            }
+            return fabs( (y - point2.y) * (point3.x - point1.x) - (point3.y - point2.y) * (x - point2.x) ) > eps;
+        }
+        if(p == 2){
+            if( (x == point1.x && y == point1.y) || (x == point3.x && y == point3.y) ){
+                return 0;
+            }
+            return fabs( (y - point1.y) * (point3.x - point1.x) - (point3.y - point1.y) * (x - point1.x) ) > eps;
+        }
+        if(p == 3){
+            if( (x == point1.x && y == point1.y) || (x == point2.x && y == point2.y) ){
+                return 0;
+            }
+            return fabs( (y - point1.y) * (point2.x - point1.x) - (point2.y - point1.y) * (x - point1.x) ) > eps;
+        }
+    }
+}
+
 int set_1_point( double x, double y){
-    point1.x = x;
-    point1.y = y;
-    successInput |= (1 << 0);
-    return 1;
+    if(set_point_check(x, y, 1) == 1){
+        point1.x = x;
+        point1.y = y;
+        successInput |= (1 << 0);
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
 int set_2_point( double x, double y){
-    point2.x = x;
-    point2.y = y;
-    successInput |= (1 << 1);
-    return 1;
+    if(set_point_check(x, y, 2) == 1){
+        point2.x = x;
+        point2.y = y;
+        successInput |= (1 << 1);
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
 int set_3_point( double x, double y){
-    point3.x = x;
-    point3.y = y;
-    successInput |= (1 << 2);
-    return 1;
+    if(set_point_check(x, y, 3) == 1){
+        point3.x = x;
+        point3.y = y;
+        successInput |= (1 << 2);
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
 
-
 int check( void ){
-    double line1 = get_side_length(point2, point3), line2 = get_side_length(point1, point3), line3 = get_side_length(point1, point2);
-    if(line1 + line2 > line3 && line2 + line3 > line1 && line3 + line1 > line2 && successInput == 7){
+    if(successInput == 7){
         return 1;
     }
     else{

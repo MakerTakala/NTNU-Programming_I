@@ -1,9 +1,12 @@
 #pragma once
+#include <stdint.h>
 
 typedef struct{
     double x;
     double y;
 }point;
+
+int set_point_check( double, double, int8_t);
 
 // Setup three points for a triangle.
 // Success: return 1; Fail: return 0
