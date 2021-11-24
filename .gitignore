@@ -1,11 +1,9 @@
 # Ignore all
 *
 
-# Unignore all with extensions
 !*.*
 
-# Unignore all dirs
-!*/
+!*.md
+!makefile
+!*.zip
 
-# ignore EXE
-*.exe
