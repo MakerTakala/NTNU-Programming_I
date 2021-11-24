@@ -36,7 +36,7 @@ Face down , nine-edge first.\n\
 And the last bug in sight ,\n\
 An ant passing by,\n\
 36 Saluted his tombstone ,\n\
-And whispered , \"Nice try.\n\
+And whispered , \"Nice try.\"\n\
 ");
     return 0;
 }
