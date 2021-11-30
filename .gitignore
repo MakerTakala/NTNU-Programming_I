@@ -1,8 +1,9 @@
 *
+
 !*.c
 !*.h
 !*.md
-!*.pdf
+!**/*.pdf
+
 !makefile
 !**/makefile
-!**/*.pdf

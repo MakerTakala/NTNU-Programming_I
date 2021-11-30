@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "triangle.h"
-#define eps 1e-6
+#define eps 1e-8
 
 static point point1, point2, point3;
 
@@ -175,7 +175,7 @@ double get_2_degree( void ){
 }
 double get_3_degree( void ){
     if(check() == 1){
-        double main_line = get_side_length(point1, point2), side_line1 = get_side_length(point3, point1), side_line2 = get_side_length(point3, point1);
+        double main_line = get_side_length(point1, point2), side_line1 = get_side_length(point3, point1), side_line2 = get_side_length(point3, point2);
         return acos( ( main_line * main_line - side_line1 * side_line1 - side_line2 * side_line2) / (-2.0 * side_line1 * side_line2) ) / M_PI * 180;
     }
     else{
