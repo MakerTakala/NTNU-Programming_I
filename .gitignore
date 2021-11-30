@@ -4,3 +4,4 @@
 !*.md
 !*.pdf
 !makefile
+!hw04/makefile
