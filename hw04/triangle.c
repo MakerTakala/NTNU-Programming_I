@@ -6,7 +6,7 @@
 
 static point point1, point2, point3;
 
-static int8_t successInput = 0;
+int8_t successInput = 0;
 
 //when user input a new point, if input invalid, return 0
 //x y means the input number, p means the input point
@@ -70,7 +70,7 @@ int set_point_check( double x, double y, int8_t p){
     //setpoint == 2 && point2 & point3 has been set
     if(successInput == 6){
         if(p == 1){
-            return fabs( (y - point2.y) * (point3.x - point1.x) - (point3.y - point2.y) * (x - point2.x) ) > eps;
+            return fabs( (y - point2.y) * (point3.x - point2.x) - (point3.y - point2.y) * (x - point2.x) ) > eps;
         }
         if(p == 2){
             return (x != point3.x || y == point3.y);
@@ -81,7 +81,7 @@ int set_point_check( double x, double y, int8_t p){
     }
     if(successInput == 7){
         if(p == 1){
-            return fabs( (y - point2.y) * (point3.x - point1.x) - (point3.y - point2.y) * (x - point2.x) ) > eps;
+            return fabs( (y - point2.y) * (point3.x - point2.x) - (point3.y - point2.y) * (x - point2.x) ) > eps;
         }
         if(p == 2){
             return fabs( (y - point1.y) * (point3.x - point1.x) - (point3.y - point1.y) * (x - point1.x) ) > eps;

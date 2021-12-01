@@ -24,7 +24,7 @@ int main(){
     for(int32_t i = 1; i <= layers; i++){
         printf("Layer %d's refractive index: ", i);
         scanf("%lf", & referactiveIndex);
-        if(referactiveIndex < 0 || 1 < referactiveIndex ){
+        if(referactiveIndex < 1){
             errorMessageExit("Wrong Input");
         }
         printf("Layer %d's height: ", i);
