@@ -22,4 +22,4 @@ clean:
 	@-rm *.o
 
 cleanexe:
-	@-rm hw040?
+	@-rm hw050?
