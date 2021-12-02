@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include "poker.h"
@@ -6,11 +5,11 @@
 int32_t big_two_sort( int8_t cards[] ){
     for(int i = 0 ; i < 13; i++){
         if(cards[i] < 1 || 52 < cards[i]){
-            return 0;
+            return -1;
         }
     }
     qsort(cards, 13, sizeof(int8_t), compare);
-    return 1;
+    return 0;
 }
 
 int compare(const void * arg1, const void * arg2){
