@@ -3,7 +3,7 @@ SRC = $(wildcard *.c)
 all:$(SRC:.c=.o)
 	gcc hw0501.o poker.o -o hw0501
 	gcc hw0502.o data.o -o hw0502 -lm
-	gcc hw0503.o polynomial.o -o hw0503
+	gcc hw0503.o polynomial.o -o hw0503 -lm
 
 
 	make clean
