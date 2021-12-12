@@ -29,6 +29,10 @@ void print_polynomial(int64_t coefficient [], int64_t degree){
     while(coefficient[degree] == 0){
         degree--;
     }
+    if(degree == -1){
+        printf("0\n");
+        return ;
+    }
     for(int i = degree; i >= 0; i--){
         if(coefficient[i] == 0){
             continue;
