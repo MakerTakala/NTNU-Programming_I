@@ -105,7 +105,8 @@ void player_round(Player *playing_player, Player *enemy_player){
             printf("Player 1 (x,y):");
             scanf("%ld,%ld", &chess_x, &chess_y);
             if(chess_x < 1 || 8 < chess_x || chess_y < 1 || 4 < chess_y){
-                printf("\nWrong Input!!Please input your choice again!\n\n");
+                print_board();
+                printf("\nWrong Input!!Please input your choice again!\n");
                 continue;
             }
             break;
@@ -127,7 +128,8 @@ void player_round(Player *playing_player, Player *enemy_player){
             printf("Player %c (x,y): ", playing_player -> name);
             scanf("%ld,%ld", &chess_x, &chess_y);
             if(chess_x < 1 || 8 < chess_x || chess_y < 1 || 4 < chess_y){
-                printf("\nWrong Input!!Please input your choice again!\n\n");
+                print_board();
+                printf("Wrong Input!!Please input your choice again!\n\n");
                 continue;
             }
             Chess *choice_chess = &chess[chess_y - 1][chess_x - 1];
@@ -147,12 +149,14 @@ void player_round(Player *playing_player, Player *enemy_player){
                     }
                 }
                 else{
-                    printf("\nThis chess is not your!!Please input your choice again!\n\n");
+                    print_board();
+                    printf("This chess is not your!!Please input your choice again!\n\n");
                     continue;
                 }
             }
             else if(choice_chess -> state == 2){
-                printf("\nThis position is empty!!Please input your choice again!\n\n");
+                print_board();
+                printf("This position is empty!!Please input your choice again!\n\n");
                 continue;
             }
         }
@@ -166,7 +170,7 @@ void move(Player *playing_player, Player *enemy_players, int64_t chess_x, int64_
             break;
         }
         if(i == 3){
-            printf("Because Player %c choice chess can't move\nPlayer %c PASS!!\n\n", playing_player -> name, playing_player -> name);
+            printf("\nBecause Player %c choice chess can't move\nPlayer %c PASS!!\n\n", playing_player -> name, playing_player -> name);
             return ;
         }
     }
@@ -175,7 +179,8 @@ void move(Player *playing_player, Player *enemy_players, int64_t chess_x, int64_
         printf("To (x,y): ");
         scanf("%ld,%ld", &to_x, &to_y);
         if(!can_move(chess_x, chess_y, to_x - 1, to_y - 1)){
-            printf("\nWrong Input!!Please input your destination again!\n\n");
+            print_board();
+            printf("Wrong Input!!Please input your destination again!\n\n");
             continue;
         }
         break;
@@ -184,6 +189,7 @@ void move(Player *playing_player, Player *enemy_players, int64_t chess_x, int64_
     Chess *attempt_space = &chess[to_y - 1][to_x - 1];
     if(attempt_space -> state == 1){
         attempt_space -> state = 2;
+        attempt_space -> color = 'N';
         enemy_players -> left_chess--;
         tie = 0;
     }
@@ -194,7 +200,7 @@ bool can_move(int64_t chess_x, int64_t chess_y, int64_t to_x, int64_t to_y){
     if(abs(chess_x - to_x) + abs(chess_y - to_y) != 1){
         return false;
     }
-    if(to_x == -1 || to_x == 8 || to_y == -1 || to_y == 4){
+    if(to_x < 0 || 7 < to_x || to_y < 0 || 3 < to_y){
         return false;
     }
     Chess *moving_chess = &chess[chess_y][chess_x];
@@ -217,6 +223,9 @@ bool can_eat(Chess *moving_chess, Chess *eaten_chess){
     }
     if(moving_chess -> level == 1 && eaten_chess -> level == 7){
         return true;
+    }
+    if(moving_chess -> level == 7 && eaten_chess -> level == 1){
+        return false;
     }
     return moving_chess -> level >= eaten_chess -> level;
 }
@@ -241,7 +250,7 @@ void cannon_move(Player *playing_player, Player *enemy_players, int64_t chess_x,
             break;
         }
         if(i == 3){
-            printf("Because Player %c choice chess can't move\nPlayer %c PASS!!\n\n", playing_player -> name, playing_player -> name);
+            printf("\nBecause Player %c choice chess can't move\nPlayer %c PASS!!\n\n", playing_player -> name, playing_player -> name);
             return ;
         }
     }
@@ -250,7 +259,8 @@ void cannon_move(Player *playing_player, Player *enemy_players, int64_t chess_x,
         printf("To (x,y): ");
         scanf("%ld,%ld", &to_x, &to_y);
         if(!cannon_can_move(chess_x, chess_y, to_x - 1, to_y - 1) && !can_move(chess_x, chess_y, to_x - 1, to_y - 1)){
-            printf("\nWrong Input!!Please input your destination again!\n\n");
+            print_board();
+            printf("Wrong Input!!Please input your destination again!\n\n");
             continue;
         }
         break;
@@ -259,6 +269,7 @@ void cannon_move(Player *playing_player, Player *enemy_players, int64_t chess_x,
     Chess *attempt_space = &chess[to_y - 1][to_x - 1];
     if(attempt_space -> state == 1){
         attempt_space -> state = 2;
+        attempt_space -> color = 'N';
         enemy_players -> left_chess--;
         tie = 0;
     }
@@ -270,6 +281,9 @@ bool cannon_can_move(int64_t chess_x, int64_t chess_y, int64_t to_x, int64_t to_
         return false;
     }
     if(!(chess_x == to_x ^ chess_y == to_y)){
+        return false;
+    }
+    if(chess[to_y][to_x].state != 1){
         return false;
     }
     if(chess_x == to_x){
