@@ -62,7 +62,7 @@ void print_polynomial(int64_t coefficient [], int64_t degree){
 }
 
 void add( int64_t p1Coefficient [], int64_t p2Coefficient [], int64_t degree ){
-    int64_t ans[degree];
+    int64_t ans[degree + 1];
     for(int i = 0; i <= degree; i++){
         ans[i] = p1Coefficient[i] + p2Coefficient[i];
     }
@@ -71,7 +71,7 @@ void add( int64_t p1Coefficient [], int64_t p2Coefficient [], int64_t degree ){
 }
 
 void sub( int64_t p1Coefficient [], int64_t p2Coefficient [], int64_t degree ){
-    int64_t ans[degree];
+    int64_t ans[degree + 1];
     for(int i = 0; i <= degree; i++){
         ans[i] = p1Coefficient[i] - p2Coefficient[i];
     }
