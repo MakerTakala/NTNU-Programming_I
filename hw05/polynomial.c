@@ -80,8 +80,8 @@ void sub( int64_t p1Coefficient [], int64_t p2Coefficient [], int64_t degree ){
 }
 
 void mul( int64_t p1Coefficient [], int64_t p2Coefficient [], int64_t degree1, int64_t degree2 ){
-    int64_t degree = degree1 + degree2 + 1;
-    int64_t ans[degree];
+    int64_t degree = degree1 + degree2;
+    int64_t ans[degree + 1];
     for(int i = 0 ; i <= degree; i++){
         ans[i] = 0;
     }

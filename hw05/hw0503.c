@@ -20,7 +20,5 @@ int main(){
     add( p1Coefficient, p2Coefficient, (int64_t)fmax(p1Degree, p2Degree) );
     sub( p1Coefficient, p2Coefficient, (int64_t)fmax(p1Degree, p2Degree) );
     mul( p1Coefficient, p2Coefficient, p1Degree, p2Degree );
-
-
     return 0;
 }
