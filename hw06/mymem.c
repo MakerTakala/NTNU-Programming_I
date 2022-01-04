@@ -3,6 +3,17 @@
 #include <stdio.h>
 #include "mymem.h"
 
+size_t change_size(size_t num){
+    if(num <= 0x18){
+        return 0x21;
+    }
+    else if(num <= 0x2F){
+        return 0x31;
+    }
+    else{
+        return (num / 0x10 + 1) * 0x10 + 1;
+    }
+}
 
 void my_realloc( void **pptr, size_t before , size_t after ){
     if(after == 0){
@@ -27,23 +38,19 @@ void my_realloc( void **pptr, size_t before , size_t after ){
         return;
     }
     if(before > after){
-        if(before - after <= 0x20){
-            return;
-        }
         int64_t *pptr_metadata = ((int64_t*)(*pptr)) - 1;
 
-        if(after <= 0x18){
-            (*pptr_metadata) = 0x21;
+        before = change_size(before);
+        after = change_size(after);
+        if(before - after < 0x20){
+            return;
         }
-        else if(after <= 0x2F){
-            (*pptr_metadata) = 0x31;
-        }
-        else{
-            (*pptr_metadata) = (after / 0x10 + 1) * 0x10 + 1;
-        }
+        (*pptr_metadata) = after;
+
         int64_t *release = (int64_t*)(*pptr) + ((*pptr_metadata) - 1) / sizeof(int64_t);
         int64_t *release_metadata = release - 1;
-        (*release_metadata) = ((before - after) / 0x10 + 1) * 0x10 + 1;
+
+        (*release_metadata) = ((before - after) / 0x10) * 0x10 + 1;
         free(release);
         return;
     }

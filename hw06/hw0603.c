@@ -46,7 +46,7 @@ int main(){
 
 void print_num(int64_t num){
     uint8_t *ptr = (uint8_t *)&num;
-    printf("The integer: %ld\n", num);
+    printf("The integer: %lu\n", num);
     for(int i = sizeof(num) - 1; i >= 0 ; i--){
         printf("(%lu) 0x%02X " , sizeof(num) - i, *(ptr + i));
     }

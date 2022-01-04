@@ -2,8 +2,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "mymem.h"
-#define before 0x80
-#define after 0x10
+#define before 0x30
+#define after 0x08
 
 int main(){
     int64_t *p;
