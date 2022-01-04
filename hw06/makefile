@@ -5,9 +5,9 @@ all:$(SRC:.c=.o)
 	gcc hw0602.o ext.o -o hw0602
 	gcc hw0603.o -o hw0603
 	gcc hw0604.o -o hw0604
-	gcc hw0605.o -o hw0605
+	gcc hw0605.o mymem.o -o hw0605
+	gcc hw0606.o -o hw0606
 	make clean
-
 
 .PHONY : new zip clean cleanexe
 

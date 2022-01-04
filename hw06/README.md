@@ -1,34 +1,20 @@
-# Homework05 41047025 王重鈞
+# Homework06 41047025 王重鈞
 
-## 4.1 Big Two
+## 6.1 Point Mirroring
 ---
-It is a library named poker, there is a function big_two_sort you can use.
-    int32_t big_two_sort( int8_t cards[] );
-This function only allow an int8_t array with 13 size.It will sort you array and return it.
-If the input is invalid, please return -1; otherwise,return 0.
+It is a library named mirror, you can use set_line function to set a function, using get_mirror functino to find the mirror point with the line you set by set_line function. If set_line argument is wrong, the program will use the last correct setting.
 
-## 4.2 Statistics
+## 6.2 Extended Euclidean Algorithm
 ---
-It is a library named poker, there are some functions you can use.
-    double get_mean( const int32_t input[], size_t size );
-    double get_median( const int32_t input[], size_t size );
-    int32_t get_mode( const int32_t input[], size_t size );
-    double get_stddev( const int32_t input[], size_t size );
-get_mean will return mean in the array.
-get_median will return median in the array.
-get_mode will return mdeian in the array.
-get_stddev wiil return median in the array.
+It is a library named ext, you can use ext_euclidean function to find multiplicative inverse of b mod a. If a < b, return -1 and c is meaningless. If gcd(a, b) != 1, return 0 and c is the gcd. If gcd(a, b) == 1, return 1, and gcd is multiplicative inverse of b mod a.
 
-## 4.3 Polynomial Calculator
+## 6.3 Integer Editor
 ---
-This ia a Polynomial Calculator, please input two polynomial and it degree.
-Any input invaild will make the program  print "Wrong Input!" as warning and terminate the program.
+This is a Integer Editor, which can allow you to edit an number.
 
-## 4.4 Banqi
+## 6.4 Finite State Machine
 ---
-This a Banqi game. Please obey following rules.
-1. 1(A) > 2(B) > 3(C) > 4(D) > 5(E) > 6(F) > 7(G); 7(G) > 1(A)
-2. If Player choose a chess which can move, this round will be pass.
-3. 6(F) has special move and eat rule, please follow the rules on wiki.
-4. If there isn't any eat and filp chess in 50 septs, this game will be TIE.
-5. Frist Player eat all another Player chess, Player WIN.
+Same description with hw0303.
+
+## 6.5 Dynamic Memory Allocation
+This is a realloc implementation.

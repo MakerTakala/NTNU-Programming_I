@@ -73,7 +73,7 @@ void S6(){
     printf("S6\n");
     into_new_block();
     int8_t next = (num == 108) * 1;
-    void(*fuc_next[4])() = {S5, Final};
+    void(*fuc_next[2])() = {S5, Final};
     fuc_next[next]();
 }
 

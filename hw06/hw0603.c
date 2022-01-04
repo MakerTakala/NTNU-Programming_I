@@ -37,7 +37,7 @@ int main(){
                 break;
             }
         }
-        int8_t *ptr = (uint8_t *)&num + (sizeof(num) - pos);
+        uint8_t *ptr = (uint8_t *)&num + (sizeof(num) - pos);
         *ptr = revise_value; 
     }
     

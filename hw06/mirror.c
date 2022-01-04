@@ -19,6 +19,7 @@ void set_line( double x1, double y1, double x2, double y2 ){
     _b = b / m;
     _c = c / m;
     allow = true;
+    return ;
 }
 
 int32_t get_mirror( double x, double y, double *r_x, double *r_y ){
