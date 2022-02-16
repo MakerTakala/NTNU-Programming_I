@@ -56,7 +56,7 @@ int32_t frac_mul( int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32
 }
 
 int32_t frac_div( int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_t d ){
-    if(b == 0 || c == 0){
+    if(b == 0 || c == 0 || d == 0){
         return -1;
     }
     (*x) = a * d;
